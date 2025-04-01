@@ -1,11 +1,13 @@
+import { Link } from "react-router";
+
 function ArticleCard({article}) {
 return (
     <section>
-    <h3>{article.title}</h3>
-    <p>User: {article.author}</p>
+    <Link className='articleTitle' to={`/articles/${article.article_id}`}>{article.title}</Link>
+    <p>Author: {article.author}</p>
     <p>Created At: {article.created_at}</p>
     <p>Votes: {article.votes}</p>
-    <img src={article.article_img_url}/>
+    <img className="responsive" src={article.article_img_url}/>
 </section>
 )
 }
