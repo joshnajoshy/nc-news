@@ -34,6 +34,27 @@ body, html, #root {
 .responsive {
   width: 100%;
   height: auto;
+  max-width:fit-content;
+}
+
+.comment-card{
+  border: 1px solid rgba(235, 78, 0, 0.818);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.article-card{
+  border-bottom: 2px solid rgba(235, 78, 0, 0.818);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
 }
 
 .footer{
