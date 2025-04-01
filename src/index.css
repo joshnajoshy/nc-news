@@ -27,6 +27,15 @@ body, html, #root {
   color: white;
 }
 
+.articleTitle{
+  font-weight: bold;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
 .footer{
 background-color: rgba(235, 78, 0, 0.818);
 position: fixed;

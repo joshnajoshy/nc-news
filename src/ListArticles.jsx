@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { getArticles } from './api'; 
 import ArticleCard from './ArticleCard';
-
+import SearchBar from './SearchBar';
 function ListArticles() {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -21,13 +21,15 @@ function ListArticles() {
         );
       }
 
-    return (
-        <ul>
+      return (
+        <section>
+            <SearchBar/>
+            <ul>
             {articles.map((article) => {
-                console.log(article)
                 return <ArticleCard article={article} key={article.article_id}/>
             })}
         </ul>
+        </section>
     )
 
 }
