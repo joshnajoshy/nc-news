@@ -16,4 +16,10 @@ const getSingleArticle = (article_id) => {
     })
 }
 
-export {getArticles, getSingleArticle};
+const getComments = (article_id) => {
+    return api.get(`/articles/${article_id}/comments`).then(({data}) => {
+        return data.comments
+    })
+}
+
+export {getArticles, getSingleArticle, getComments};
