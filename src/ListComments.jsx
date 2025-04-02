@@ -13,6 +13,7 @@ function ListComments({article_id}){
             setIsLoading(false);
             setIsError(false);
         }).catch((error) => {
+            setIsLoading(false)
             setIsError(true);
           })
     }, [article_id]);
@@ -28,16 +29,16 @@ function ListComments({article_id}){
       if (isError) {
         return (
           <div className="event-list">
-            <p>Whoops! Something went wrong ...</p>
+            <p>No comments for this article yet ... </p>
           </div>
         );
       }
-          
+
     return (
         <ul>
             <h3>Comments:</h3>
             {comments.map((comment) => {
-                return <CommentCard comment={comment}/>
+                return <CommentCard comment={comment} key={comment.comment_id}/>
             })}
         </ul>
     )
