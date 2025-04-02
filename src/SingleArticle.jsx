@@ -41,6 +41,7 @@ const handleMinusClick = () => {
         setOptimisticVotes((currentOptimisticVotes) => {
             return currentOptimisticVotes + 1
         })
+        setIsError(true);
     })
     setOptimisticVotes((currentOptimisticVotes) => {
         return currentOptimisticVotes - 1
