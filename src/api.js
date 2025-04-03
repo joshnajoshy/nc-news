@@ -29,8 +29,8 @@ return api.patch(`/articles/${article_id}`, {inc_votes: votes}).then(({data}) =>
 }
 
 const postComment = (article_id, formData) => {
-    return api.post(`/articles/${article_id}/comments`, {formData}).then((response) => {
-        console.log(response.data)
+    return api.post(`/articles/${article_id}/comments`, formData).then((response) => {
+        return response.data;
     })
 }
 

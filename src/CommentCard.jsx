@@ -1,5 +1,13 @@
 function CommentCard({comment}) {
-    const datePublished = new Date(comment.created_at);
+    let datePublished;
+    
+    if(comment.created_at === null){
+        const timeStamp = Date.now()
+        datePublished = new Date(timeStamp)
+    } else {
+        datePublished = new Date(comment.created_at);
+    }
+
     const fullDate = datePublished.toLocaleDateString();
     const time = datePublished.toLocaleTimeString();
 
