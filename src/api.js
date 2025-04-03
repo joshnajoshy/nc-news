@@ -34,5 +34,11 @@ const postComment = (article_id, formData) => {
     })
 }
 
+const deleteComment = (comment_id) => {
+    return api.delete(`/comments/${comment_id}`).then(({data}) => {
+        console.log(`deleted post with comment id ${comment_id}`)
+    })
+}
 
-export {getArticles, getSingleArticle, getComments, updateUserVote, postComment};
+
+export {getArticles, getSingleArticle, getComments, updateUserVote, postComment, deleteComment};
