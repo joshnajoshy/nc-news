@@ -57,6 +57,11 @@ body, html, #root {
   margin: 0px;
 }
 
+#body {
+  font-size: 14px; 
+  width: 400px;
+}
+
 .footer{
 background-color: rgba(235, 78, 0, 0.818);
 position: fixed;
