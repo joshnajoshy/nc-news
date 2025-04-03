@@ -7,7 +7,7 @@ function ListComments({article_id}){
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [commentError, setCommentError] = useState(false);
-    const [postError, setPostError] = useState(false);
+    const [isError, setIsError] = useState(false);
     const [show, setShow] = useState(false);
     const [postCommentSuccess, setpostCommentSuccess] = useState(false)
     const [validationError, setValidationError] = useState({});
@@ -16,8 +16,6 @@ function ListComments({article_id}){
         body: "",
     }
     const [formData, setFormData] = useState(initialValues)
-    const unixdate = Date.now()
-    const date = new Date(unixdate).toISOString()
 
     const handleChange = (event) => {
         const {name, value} = event.target
@@ -47,7 +45,7 @@ function ListComments({article_id}){
             setpostCommentSuccess(true)
         }).catch((error) => {
             setIsLoading(false)
-            setPostError(true)
+            setIsError(true)
             setpostCommentSuccess(false)
         })
         }
@@ -84,7 +82,7 @@ function ListComments({article_id}){
         );
       }
 
-      if(postError){
+      if(isError){
         return (
             <div>
               <p>Whoops something went wrong ... </p>
@@ -120,7 +118,7 @@ function ListComments({article_id}){
             </> : <></>}
             <h3>Comments</h3>
             {comments.map((comment) => {
-                return <CommentCard comment={comment} key={comment.comment_id}/>
+                return <CommentCard setIsError={setIsError} comment={comment} key={comment.comment_id}/>
             })}
         </ul>
     )

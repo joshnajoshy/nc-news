@@ -27,6 +27,11 @@ body, html, #root {
   color: white;
 }
 
+.header nav {
+  padding: 0px;
+  margin: 0px;
+}
+
 .articleTitle{
   font-weight: bold;
 }
