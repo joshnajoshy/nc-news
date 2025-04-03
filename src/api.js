@@ -28,4 +28,11 @@ return api.patch(`/articles/${article_id}`, {inc_votes: votes}).then(({data}) =>
 })
 }
 
-export {getArticles, getSingleArticle, getComments, updateUserVote};
+const postComment = (article_id, formData) => {
+    return api.post(`/articles/${article_id}/comments`, {formData}).then((response) => {
+        console.log(response.data)
+    })
+}
+
+
+export {getArticles, getSingleArticle, getComments, updateUserVote, postComment};
