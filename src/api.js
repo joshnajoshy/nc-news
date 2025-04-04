@@ -35,10 +35,21 @@ const postComment = (article_id, formData) => {
 }
 
 const deleteComment = (comment_id) => {
-    return api.delete(`/comments/${comment_id}`).then(({data}) => {
+    return api.delete(`/comments/${comment_id}`).then(() => {
         console.log(`deleted post with comment id ${comment_id}`)
     })
 }
 
+const getAllTopics = () => {
+    return api.get(`/topics`).then(({data}) => {
+        return data.topics
+    })
+}
 
-export {getArticles, getSingleArticle, getComments, updateUserVote, postComment, deleteComment};
+const getArticlesByTopic = (topic) => {
+    return api.get(`/articles?topic=${topic}`).then(({data}) => {
+        return data.articles
+    })
+}
+
+export {getArticles, getSingleArticle, getComments, updateUserVote, postComment, deleteComment, getAllTopics, getArticlesByTopic};

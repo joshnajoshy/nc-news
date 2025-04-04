@@ -9,7 +9,7 @@ function ArticleCard({article}) {
 
 return (
     <li className='article-card'>
-    <h1><Link className='articleTitle' to={`/articles/${article.article_id}`}>{article.title}</Link></h1>
+    <h2><Link className='articleTitle' to={`/articles/${article.article_id}`}>{article.title}</Link></h2>
     <p>Author: {article.author}</p>
     <p>Published on {fullDate} at {time}</p>
     <p>Votes: {article.votes}</p>
