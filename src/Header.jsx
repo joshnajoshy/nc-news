@@ -7,6 +7,7 @@ return (
         <nav>
         <Link to='/'>Homepage</Link>
         <Link to='/articles'>View Articles</Link> 
+        <Link to='/topics'>Topics</Link>
         </nav>
     </header>
 )

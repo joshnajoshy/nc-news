@@ -3,18 +3,9 @@ import { useState } from "react";
 
 function CommentCard({comment,setIsError}) {
 const [deleteSuccess, setDeleteSuccess] = useState(false)
-
-    let datePublished;
-    
-    if(comment.created_at === null){
-        const timeStamp = Date.now()
-        datePublished = new Date(timeStamp)
-    } else {
-        datePublished = new Date(comment.created_at);
-    }
-
-    const fullDate = datePublished.toLocaleDateString();
-    const time = datePublished.toLocaleTimeString();
+const datePublished = new Date(comment.created_at);
+const fullDate = datePublished.toLocaleDateString();
+const time = datePublished.toLocaleTimeString();
 
     const handleDeleteClick = () => {
         deleteComment(comment.comment_id).then(() => {

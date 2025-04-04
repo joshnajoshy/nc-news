@@ -14,8 +14,13 @@ function ListComments({article_id}){
     const initialValues = {
         username: "",
         body: "",
+        created_at: ""
     }
     const [formData, setFormData] = useState(initialValues)
+
+    const timeStamp = Date.now()
+    const datePublished = new Date(timeStamp).toISOString()
+    formData.created_at = `${datePublished}`
 
     const handleChange = (event) => {
         const {name, value} = event.target
