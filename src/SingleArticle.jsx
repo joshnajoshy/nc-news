@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import {useEffect, useState} from 'react'
 import {getSingleArticle, updateUserVote} from './api'
 import ListComments from "./ListComments";
+import LoadingSpinner from "./LoadingSpinner";
 
 function SingleArticle() {
 const {article_id} = useParams()
@@ -51,7 +52,7 @@ const handleMinusClick = () => {
 if (isLoading) {
     return (
       <div>
-        <p> Loading ...</p>
+        <LoadingSpinner/>
       </div>
     );
   }
@@ -71,7 +72,7 @@ return (
         <p>{eachArticle.body}</p>
         <img src={eachArticle.article_img_url} className="responsive"/>
         <p>Author: {eachArticle.author}</p>
-        <p>Votes: {eachArticle.votes + optimisticVotes}
+        <p className="vote">Votes: {eachArticle.votes + optimisticVotes}
             <button onClick={handleAddClick}>+1 Vote</button>
             <button onClick={handleMinusClick}>-1 Vote</button>
         </p>

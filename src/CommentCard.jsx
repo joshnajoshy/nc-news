@@ -27,7 +27,7 @@ const time = datePublished.toLocaleTimeString();
     return (
         <li className="comment-card">
             <p>User: {comment.author} 
-                {comment.author === 'grumpy19' ? <button onClick={handleDeleteClick}>Delete</button>: <></>}
+                {comment.author === 'grumpy19' ? <button className="deleteButton" onClick={handleDeleteClick}>Delete</button>: <></>}
             </p>
             <p>Commented on {fullDate} at {time}</p>
             <p>{comment.body}</p>

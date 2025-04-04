@@ -1,25 +1,41 @@
 import {useState, useEffect} from 'react';
-import { getArticles } from './api'; 
+import { filterArticlesByDate, getArticles } from './api'; 
 import ArticleCard from './ArticleCard';
+import LoadingSpinner from './LoadingSpinner';
+import DropDownForDates from './DropDownForDates';
+
 function ListArticles() {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
+    const queryParameters = new URLSearchParams(window.location.search)
+    const sort_by = queryParameters.get("sort_by")
+    const order = queryParameters.get("order")
 
     useEffect(() => {
-        getArticles().then((articles) => {
-            setArticles(articles)
-            setIsLoading(false);
-            setIsError(false);
+      if(order || sort_by){
+        filterArticlesByDate(sort_by, order).then((articles) => {
+          setArticles(articles)
+          setIsLoading(false);
+          setIsError(false);
         }).catch((error) => {
           setIsError(true);
         }) 
-    }, [])
+      } else {
+        getArticles().then((articles) => {
+          setArticles(articles)
+          setIsLoading(false);
+          setIsError(false);
+      }).catch((error) => {
+        setIsError(true);
+      }) 
+      }
+    }, [order])
 
     if (isLoading) {
         return (
           <div>
-            <p> Loading ...</p>
+           <LoadingSpinner/>
           </div>
         );
       }
@@ -34,6 +50,7 @@ function ListArticles() {
 
       return (
         <section>
+          <DropDownForDates/>
             <ul>
             {articles.map((article) => {
                 return <ArticleCard article={article} key={article.article_id}/>
