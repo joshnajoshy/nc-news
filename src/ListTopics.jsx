@@ -1,6 +1,7 @@
 import { getAllTopics } from "./api";
 import {useState, useEffect} from 'react';
 import TopicCard from "./TopicCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 function ListTopics() {
  const [topics, setTopics] = useState([]);
@@ -20,7 +21,7 @@ function ListTopics() {
 if (isLoading) {
     return (
       <div>
-        <p> Loading ...</p>
+       <LoadingSpinner/>
       </div>
     );
   }

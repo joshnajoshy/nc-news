@@ -30,16 +30,41 @@ body, html, #root {
 .header nav {
   padding: 0px;
   margin: 0px;
+  color: black;
+}
+
+.link {
+  color: black;
 }
 
 .articleTitle{
   font-weight: bold;
+  color: black;
 }
 
 .responsive {
   width: 100%;
   height: auto;
   max-width:fit-content;
+}
+
+.vote {
+  padding: 0px;
+  padding: 10px
+}
+
+.deleteButton{
+  padding: 10px;
+  margin: 10px;
+}
+
+.dropDown{
+  display: flex;
+}
+
+.vote button {
+  padding: 10px;
+  margin: 10px;
 }
 
 .comment-card{

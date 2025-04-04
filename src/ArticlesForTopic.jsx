@@ -2,6 +2,7 @@ import { getArticlesByTopic } from "./api";
 import {useState, useEffect} from 'react';
 import { useParams } from "react-router";
 import ArticleCard from "./ArticleCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 function ArticlesForTopic() {
 const {topic} = useParams()
@@ -23,7 +24,7 @@ useEffect(() => {
 if (isLoading) {
     return (
       <div>
-        <p> Loading ...</p>
+        <LoadingSpinner/>
       </div>
     );
   }

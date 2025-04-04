@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getComments } from "./api";
 import CommentCard from "./CommentCard";
 import { postComment } from "./api";
+import LoadingSpinner from "./LoadingSpinner";
 
 function ListComments({article_id}){
     const [comments, setComments] = useState([])
@@ -82,7 +83,7 @@ function ListComments({article_id}){
     if (isLoading) {
         return (
           <div>
-            <p> Loading ...</p>
+            <LoadingSpinner/>
           </div>
         );
       }
