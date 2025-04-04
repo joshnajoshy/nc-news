@@ -3,12 +3,14 @@ import {useState, useEffect} from 'react';
 import { useParams } from "react-router";
 import ArticleCard from "./ArticleCard";
 import LoadingSpinner from "./LoadingSpinner";
+import ErrorComponent from "./ErrorComponent";
 
 function ArticlesForTopic() {
 const {topic} = useParams()
 const [articles, setArticles] = useState([]);
 const [isLoading, setIsLoading] = useState(true);
 const [isError, setIsError] = useState(false);
+const [notFound, setNotFoundError] = useState(false)
 
 useEffect(() => {
     getArticlesByTopic(topic).then((articles) => {
@@ -17,7 +19,12 @@ useEffect(() => {
         setIsError(false);
     })
     .catch((error) => {
-      setIsError(true);
+      setIsLoading(false);
+      if(error.status === 404){
+        setNotFoundError(true)
+      } else{
+        setIsError(true);
+      }
     }) 
 }, [topic])
 
@@ -35,6 +42,14 @@ if (isError) {
         <p>Whoops! Something went wrong ...</p>
       </div>
     );
+  }
+
+  if(notFound){
+    return (
+      <div>
+      <ErrorComponent/>
+      </div>
+    )
   }
 
 

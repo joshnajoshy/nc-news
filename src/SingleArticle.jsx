@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import {getSingleArticle, updateUserVote} from './api'
 import ListComments from "./ListComments";
 import LoadingSpinner from "./LoadingSpinner";
+import ErrorComponent from "./ErrorComponent";
 
 function SingleArticle() {
 const {article_id} = useParams()
@@ -10,6 +11,7 @@ const [eachArticle, setEachArticle] = useState([])
 const [isLoading, setIsLoading] = useState(true);
 const [isError, setIsError] = useState(false);
 const [optimisticVotes, setOptimisticVotes] = useState(0)
+const [notFound, setNotFoundError] = useState(false)
 
 useEffect(() => {
 getSingleArticle(article_id).then((article) => {
@@ -17,7 +19,12 @@ getSingleArticle(article_id).then((article) => {
     setIsLoading(false);
     setIsError(false);
 }).catch((error) => {
-    setIsError(true);
+    setIsLoading(false);
+      if(error.status === 404){
+        setNotFoundError(true)
+      } else{
+        setIsError(true);
+      }
 })
 }, [article_id])
 
@@ -59,10 +66,18 @@ if (isLoading) {
 
   if (isError) {
     return (
-      <div className="event-list">
+      <div>
         <p>Whoops! Something went wrong ...</p>
       </div>
     );
+  }
+
+  if(notFound){
+    return (
+      <div>
+      <ErrorComponent/>
+      </div>
+    )
   }
 
 return (
