@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 function DropDownForDates() {
 
   return (
-    <div className='dropDown'>
+    <div className='dropDown' data-display='static'>
     <Dropdown>
       <Dropdown.Toggle variant='Secondary' id="dropdown-basic">
         Filter By Date

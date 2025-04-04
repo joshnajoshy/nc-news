@@ -12,6 +12,7 @@ const [isLoading, setIsLoading] = useState(true);
 const [isError, setIsError] = useState(false);
 const [optimisticVotes, setOptimisticVotes] = useState(0)
 const [notFound, setNotFoundError] = useState(false)
+const [isDisabled, setIsDisabled] = useState(false);
 
 useEffect(() => {
 getSingleArticle(article_id).then((article) => {
@@ -33,6 +34,7 @@ const datePublished = new Date(eachArticle.created_at);
     const time = datePublished.toLocaleTimeString();
 
 const handleAddClick = () => {
+    setIsDisabled(true)
     updateUserVote(article_id, 1).catch(() => {
         setOptimisticVotes((currentOptimisticVotes) => {
             return currentOptimisticVotes - 1
@@ -45,6 +47,7 @@ const handleAddClick = () => {
 }
 
 const handleMinusClick = () => {
+    setIsDisabled(true)
     updateUserVote(article_id, -1).catch(() => {
         setOptimisticVotes((currentOptimisticVotes) => {
             return currentOptimisticVotes + 1
@@ -80,6 +83,15 @@ if (isLoading) {
     )
   }
 
+  const styles = {
+    button: {
+      cursor: 'pointer',
+    },
+    buttonDisabled: {
+      cursor: 'not-allowed',
+    },
+  };
+
 return (
     <section>
         <h1>{eachArticle.title}</h1>
@@ -88,8 +100,8 @@ return (
         <img src={eachArticle.article_img_url} className="responsive"/>
         <p>Author: {eachArticle.author}</p>
         <p className="vote">Votes: {eachArticle.votes + optimisticVotes}
-            <button onClick={handleAddClick}>+1 Vote</button>
-            <button onClick={handleMinusClick}>-1 Vote</button>
+            <button disabled={isDisabled} onClick={handleAddClick} style={isDisabled ? styles.buttonDisabled : styles.button}>+1 Vote</button>
+            <button disabled={isDisabled} style={isDisabled ? styles.buttonDisabled : styles.button} onClick={handleMinusClick}>-1 Vote</button>
         </p>
         <ListComments article_id={article_id}/>
     </section>
