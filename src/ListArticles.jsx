@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { filterArticlesByDate, getArticles } from './api'; 
+import { filterArticles, getArticles } from './api'; 
 import ArticleCard from './ArticleCard';
 import LoadingSpinner from './LoadingSpinner';
 import DropDownForDates from './DropDownForDates';
@@ -14,7 +14,7 @@ function ListArticles() {
 
     useEffect(() => {
       if(order || sort_by){
-        filterArticlesByDate(sort_by, order).then((articles) => {
+        filterArticles(sort_by, order).then((articles) => {
           setArticles(articles)
           setIsLoading(false);
           setIsError(false);

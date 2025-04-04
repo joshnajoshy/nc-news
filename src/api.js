@@ -52,10 +52,10 @@ const getArticlesByTopic = (topic) => {
     })
 }
 
-const filterArticlesByDate = (sort_by, order) => {
+const filterArticles = (sort_by, order) => {
     return api.get(`/articles?sort_by=${sort_by}&order=${order}`).then(({data}) => {
         return data.articles
     })
 }
 
-export {getArticles, getSingleArticle, getComments, updateUserVote, postComment, deleteComment, getAllTopics, getArticlesByTopic, filterArticlesByDate};
+export {getArticles, getSingleArticle, getComments, updateUserVote, postComment, deleteComment, getAllTopics, getArticlesByTopic, filterArticles};
