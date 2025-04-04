@@ -14,6 +14,8 @@ function ListTopics() {
         setIsLoading(false);
         setIsError(false);
     }).catch((error) => {
+      console.log(error, 'hello')
+      setIsLoading(false)
       setIsError(true);
     }) 
 }, [])
